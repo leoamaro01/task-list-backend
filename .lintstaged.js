@@ -1,9 +1,7 @@
 import { relative } from "path";
 
 const buildEslintCommand = (filenames) =>
-  `eslint --fix --file ${filenames
-    .map((f) => relative(process.cwd(), f))
-    .join(" --file ")}`;
+  `eslint --fix ${filenames.map((f) => relative(process.cwd(), f)).join(" ")}`;
 
 const prettierCommand = "prettier --write";
 
