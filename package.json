@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "start": "node --no-warnings=ExperimentalWarning --loader ts-node/esm src/server.ts",
-    "test": "vitest",
+    "test": "vitest run --passWithNoTests",
     "prepare": "husky && husky install"
   },
   "repository": {
