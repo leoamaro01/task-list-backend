@@ -2,9 +2,11 @@ import { RequestContext } from "@mikro-orm/core";
 import { fastify } from "fastify";
 import { initORM } from "./db.js";
 import { registerTaskRoutes } from "./modules/task/routes.js";
+import config from "./mikro-orm.config.js";
+import cors from "@fastify/cors";
 
-export async function bootstrap(port = 3001) {
-  const db = await initORM();
+export async function bootstrap(port = 30001) {
+  const db = await initORM(config);
 
   // In production this would be hanlded by a script
   // that a human manually calls after checking
@@ -27,6 +29,11 @@ export async function bootstrap(port = 3001) {
   });
 
   app.register(registerTaskRoutes, { prefix: "task" });
+
+  // in production this would contain the front end url
+  app.register(cors, {
+    origin: false,
+  });
 
   const url = await app.listen({ port });
 
