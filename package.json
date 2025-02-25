@@ -2,12 +2,11 @@
   "name": "task-list-backend",
   "version": "1.0.0",
   "type": "module",
-  "main": "index.js",
   "scripts": {
     "build": "tsc",
     "start": "node --no-warnings=ExperimentalWarning --loader ts-node/esm src/server.ts",
     "test": "vitest run --passWithNoTests",
-    "prepare": "husky && husky install"
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",
