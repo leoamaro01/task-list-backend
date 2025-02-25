@@ -25,7 +25,7 @@ export default [
       "no-console": "warn",
       semi: ["error", "always"],
       quotes: ["error", "double"],
-      "prettier/prettier": "error",
+      "prettier/prettier": "warn",
     },
   },
 ];
