@@ -1,6 +1,7 @@
 import { Options, SqliteDriver } from "@mikro-orm/sqlite";
 import { TsMorphMetadataProvider } from "@mikro-orm/reflection";
 import { Task } from "./modules/task/task.entity.js";
+import { SeedManager } from "@mikro-orm/seeder";
 
 const config: Options = {
   // for simplicity, we use the SQLite database, as it's available pretty much everywhere
@@ -12,7 +13,8 @@ const config: Options = {
   // check the documentation for their differences: https://mikro-orm.io/docs/metadata-providers
   metadataProvider: TsMorphMetadataProvider,
   // enable debug mode to log SQL queries and discovery information
-  debug: true,
+  debug: false,
+  extensions: [SeedManager],
 };
 
 export default config;
