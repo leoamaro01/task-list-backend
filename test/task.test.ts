@@ -39,3 +39,65 @@ test("list all tasks", async () => {
     count: 2,
   });
 });
+
+test("insert a task, update it and remove it", async () => {
+  const taskText = "This is a really cool test!";
+  const res = await app.inject({
+    method: "post",
+    url: "/task",
+    body: {
+      text: taskText,
+    },
+  });
+
+  expect(res.statusCode).toBe(201);
+
+  expect(res.json()).toMatchObject({
+    checked: false,
+    text: taskText,
+  });
+
+  const id: number = res.json().id;
+
+  const res2 = await app.inject({
+    method: "patch",
+    url: `/task/${id}`,
+    body: {
+      checked: true,
+    },
+  });
+
+  expect(res2.statusCode).toBe(200);
+
+  expect(res2.json()).toMatchObject({
+    id: id,
+    text: taskText,
+    checked: true,
+  });
+
+  const res3 = await app.inject({
+    method: "delete",
+    url: `/task/${id}`,
+  });
+
+  expect(res3.statusCode).toBe(204);
+
+  const res4 = await app.inject({
+    method: "get",
+    path: `/task/${id}`,
+  });
+
+  expect(res4.statusCode).toBe(404);
+});
+
+test("Try to create invalid task", async () => {
+  const res = await app.inject({
+    method: "post",
+    url: "/task",
+    body: {
+      checked: true,
+    },
+  });
+
+  expect(res.statusCode).toBe(400);
+});
