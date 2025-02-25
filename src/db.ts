@@ -21,6 +21,12 @@ export async function initORM(options?: Options): Promise<Services> {
 
   const orm = await MikroORM.init(options);
 
+  // In production this would be hanlded by a script
+  // that a human manually calls after checking
+  // that schema update queries aren't destructive
+  // Or even better, a migration would be used.
+  orm.schema.updateSchema();
+
   // save to cache before returning
   return (cache = {
     orm,
