@@ -5,7 +5,6 @@ import { initTestApp } from "./utils.js";
 let app: FastifyInstance;
 
 beforeAll(async () => {
-  // we use different ports to allow parallel testing
   app = await initTestApp(30001);
 });
 
@@ -20,6 +19,10 @@ test("list all tasks", async () => {
     method: "get",
     url: "/task",
   });
+
+  console.log(res.statusMessage);
+  console.log(res.statusCode);
+  console.log(res.body);
 
   // assert it was successful response
   expect(res.statusCode).toBe(200);

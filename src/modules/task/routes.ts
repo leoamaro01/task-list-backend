@@ -2,9 +2,10 @@ import { FastifyInstance } from "fastify";
 import { initORM } from "../../db.js";
 import { EntityData } from "@mikro-orm/core";
 import { Task } from "./task.entity.js";
+import config from "../../mikro-orm.config.js";
 
 export async function registerTaskRoutes(app: FastifyInstance) {
-  const db = await initORM();
+  const db = await initORM(config);
 
   app.get("/", async (request) => {
     const { limit, offset } = request.query as {
