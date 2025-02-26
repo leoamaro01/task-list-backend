@@ -1,6 +1,10 @@
 # Task List
 
-This project was developed as a technical test for cuban.engineer
+This is a back-end source code of the Task List app for the cuban.engineer technical test.
+
+Download the front-end web app from [here](https://www.github.com/leoamaro01/task-list) to view this app in real action.
+
+This was made using Fastify as a framework, with MikroORM for database management. An SQLite database was used to store the data.
 
 To run the server, you must execute the following commands:
 
@@ -24,7 +28,7 @@ You can also run:
 npm test
 ```
 
-To launch the suite of tests using Vitest.
+To launch the (admitedly small) suite of tests using Vitest.
 
 # Dependencies
 
